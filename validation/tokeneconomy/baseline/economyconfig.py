@@ -4,7 +4,7 @@ from datetime import timedelta
 import numpy as np
 from typing import Dict, List
 
-from cadCAD.configuration import append_configs
+from cadCAD.configuration import Experiment
 from cadCAD.configuration.utils import bound_norm_random, ep_time_step, config_sim
 from .constants import constants
 from .initial_values import initial_values
@@ -44,12 +44,14 @@ raw_exogenous_states = {
 }
 
 env_processes = {}
+    
 
-append_configs(
-    sim_configs=sim_config,
+experiment = Experiment()
+experiment.append_model(
     initial_state=genesis_states,
-    seeds=seeds,
-    raw_exogenous_states=raw_exogenous_states,
+    partial_state_update_blocks=partial_state_update_block,
     env_processes=env_processes,
-    partial_state_update_blocks=partial_state_update_block
+    sim_configs=sim_config,
+    #seeds=seeds,
+    #raw_exogenous_states=raw_exogenous_states,
 )
