@@ -52,6 +52,6 @@ experiment.append_model(
     partial_state_update_blocks=partial_state_update_block,
     env_processes=env_processes,
     sim_configs=sim_config,
-    #seeds=seeds,
-    #raw_exogenous_states=raw_exogenous_states,
+    seeds=seeds,
+    #raw_exogenous_states=raw_exogenous_states, # TODO: update as this func is deprecated
 )
