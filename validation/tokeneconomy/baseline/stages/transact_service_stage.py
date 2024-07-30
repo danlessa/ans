@@ -34,7 +34,9 @@ def compute_supply_reduction(s):
     # upcoming Bs in the next 6 months
     upcoming_Bs = [s['B'] * (constants['decay_rate']**x) for x in range(0, 25)]
     Bdiff = [(upcoming_Bs[i-1] - upcoming_Bs[i]) / upcoming_Bs[i-1] for i in range(1, len(upcoming_Bs)) ]
-    Bema = max(pd.ewm(np.array(Bdiff), span=len(Bdiff)).mean())
+
+    df = pd.DataFrame(Bdiff)
+    Bema = df.ewm(span=len(Bdiff)).mean().max()[0]
     return Bema
 
 # speculative value
